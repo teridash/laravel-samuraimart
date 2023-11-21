@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -12,6 +13,12 @@ class UserController extends Controller
     public function mypage() {
         $user = Auth::user();
         return view('users.mypage', compact('user'));
+    }
+
+    public function favorite() {
+        $user = Auth::user();
+        $favorites = $user->favorites(Product::class)->get();
+        return view('users.favorite', compact('favorites'));
     }
     /**
      * Show the form for editing the specified resource.
