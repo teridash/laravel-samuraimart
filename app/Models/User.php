@@ -10,10 +10,13 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
+use Illuminaate\Databace\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes as EloquentSoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, Favoriter;
+    use HasApiTokens, HasFactory, Notifiable, Favoriter, EloquentSoftDeletes;
+    protected $dates = ['deleted_at'];
 
     public function sendEmailVerificationNotification()
     {
