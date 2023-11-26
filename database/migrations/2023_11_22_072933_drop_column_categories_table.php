@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('major_cetegory_name');
+            $table->integer('major_cetegory_id')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('major_category_name');
+            $table->dropColumn('major_category_id');
         });
     }
 };
